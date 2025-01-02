@@ -17,7 +17,7 @@ const Dashboard = () => {
             name="blogTitle"
             type="text"
             id="title"
-            defaultValue={"How ai works under the hood"}
+            placeholder={"Enter Blog Title Here..."}
             className="w-full py-2 px-4 mt-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-green-600"
           />
         </div>
@@ -29,8 +29,8 @@ const Dashboard = () => {
             name="blogContent"
             id="content"
             rows={4}
-            defaultValue={
-              "Artificial intelligence (AI) is a branch of computer science that aims to create machines that can perform tasks that require human intelligence."
+            placeholder={
+              "Write a short detailed description of the blog content here..."
             }
             className="w-full p-4 mt-2 border border-gray-300 rounded-lg outline-none focus:ring-1 focus:ring-green-600"
           />

@@ -2,7 +2,8 @@ import { faBrain } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import UserProfile from "./UserProfile";
-import Link from "next/link";
+
+import ShowToken from "./ShowToken";
 
 const Navbar = () => {
   return (
@@ -12,13 +13,7 @@ const Navbar = () => {
         <h1 className="text-[1.8rem] font-semibold">AI Blog Generator</h1>
       </div>
       <div className="flex items-center gap-8">
-        <Link
-          href="/users/token-topup"
-          className="flex items-center gap-2 text-[1.5rem]"
-        >
-          <span>Token : </span>
-          <span className="font-semibold text-green-600">23</span>
-        </Link>
+        <ShowToken />
         <UserProfile />
       </div>
     </div>

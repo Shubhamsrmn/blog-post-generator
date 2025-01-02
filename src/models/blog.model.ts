@@ -2,19 +2,14 @@ import mongoose from "mongoose";
 
 const BlogSchema = new mongoose.Schema(
   {
-    userId: {
-      index: true,
-      type: String,
-      required: true,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
     title: {
       type: String,
       required: true,
       trim: true,
-    },
-    markdown: {
-      type: String,
-      required: true,
     },
     content: {
       type: String,
@@ -41,4 +36,4 @@ const BlogSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Blog || mongoose.model("Blog", BlogSchema);
+export default mongoose.models?.Blog || mongoose.model("Blog", BlogSchema);

@@ -1,4 +1,4 @@
-import MarkdownRenderer from "@/components/blog/MarkdownRenderer";
+import BlogRenderer from "@/components/blog/BlogRenderer";
 import { getBlogPost } from "@/utils/functions/getBlogPost";
 
 import React from "react";
@@ -11,7 +11,14 @@ async function BlogDetails({ params }: props) {
   const blogPost = await getBlogPost(params.blogId);
   return (
     <div>
-      <MarkdownRenderer markdown={blogPost.markdown} />
+      <BlogRenderer
+        title={blogPost.title}
+        content={blogPost.content}
+        keywords={blogPost.keywords}
+        tags={blogPost.tags}
+        category={blogPost.categories[0]}
+        metaDescription={blogPost.metaDescription}
+      />
     </div>
   );
 }
