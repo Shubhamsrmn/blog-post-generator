@@ -103,11 +103,15 @@ p {
 }
 /* ----------------------------------------------------- */
 /* tailwind.css */
-/* tailwind.css */
+.tooltip-after {
+  position: relative; /* Needed for absolute positioning of the tooltip */
+}
+
 .tooltip-after::after {
-  @apply absolute w-max rounded-xl bg-stone-700 px-4 py-1 text-white text-[1.1rem] hidden;
+  @apply absolute w-max rounded-xl bg-stone-700 px-4 py-1 text-white text-[1.1rem] opacity-0 transition-opacity duration-500 ease-in-out; /* Added opacity and transition */
   content: attr(data-tooltip);
-  transition: all 0.3s ease-in-out;
+  pointer-events: none; /* Prevents tooltip from blocking clicks */
+  z-index: 10; /* Ensure tooltip is above other content */
 }
 
 /* Default direction (bottom) */
@@ -121,5 +125,5 @@ p {
 }
 
 .tooltip-after:hover::after {
-  @apply block;
+  @apply opacity-100; /* Tooltip becomes visible on hover */
 }

@@ -1,14 +1,14 @@
 import BlogRenderer from "@/components/blog/BlogRenderer";
 import { getBlogPost } from "@/utils/functions/getBlogPost";
-
 import React from "react";
-type props = {
-  params: {
-    blogId: string;
-  };
-};
-async function BlogDetails({ params }: props) {
-  const blogPost = await getBlogPost(params.blogId);
+
+async function BlogDetails({
+  params,
+}: {
+  params: Promise<{ blogId: string }>;
+}) {
+  const blogId = (await params).blogId;
+  const blogPost = await getBlogPost(blogId);
   return (
     <div>
       <BlogRenderer

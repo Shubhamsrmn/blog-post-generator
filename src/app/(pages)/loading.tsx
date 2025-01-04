@@ -11,6 +11,7 @@ function loading() {
         height={120}
         className="rounded-full"
       />
+      <h1>loading</h1>
     </div>
   );
 }

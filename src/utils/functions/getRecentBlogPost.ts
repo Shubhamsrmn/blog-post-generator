@@ -15,6 +15,7 @@ export async function getRecentBlogPost() {
 
     // Fetch recent blog posts for the authenticated user
     const recentBlogs = await blogModel
+      //@ts-expect-error userId is added
       .find({ user: session.user.userId }) // Query by user ObjectId
       .sort({ createdAt: -1 })
       .limit(5);

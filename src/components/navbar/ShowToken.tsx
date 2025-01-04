@@ -12,7 +12,7 @@ async function ShowToken() {
   return (
     <Link
       href="/users/token-topup"
-      className="flex items-center gap-2 text-[1.5rem]"
+      className="flex items-center gap-2 text-[1.6rem]"
     >
       <span>Token : </span>
       <span className="font-semibold text-green-600">
