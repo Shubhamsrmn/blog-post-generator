@@ -11,7 +11,6 @@ const StripeTokenBuy = () => {
   const amount = 10;
   return (
     <div>
-      <h1>StripeTokenBuy</h1>
       <Elements
         stripe={stripePromise}
         options={{

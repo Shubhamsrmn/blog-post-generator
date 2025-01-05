@@ -89,7 +89,7 @@ export async function blogCreateAction(formData: FormData) {
     const parsedContent = parseMarkdownFun(
       generatedContent.replaceAll("```markdown", "").replaceAll("```", "")
     );
-    await BlogModel.create({
+    const blog = await BlogModel.create({
       user: dbUser._id,
       title: parsedContent.title,
       content: parsedContent.content,
@@ -107,6 +107,10 @@ export async function blogCreateAction(formData: FormData) {
       throw new Error("Failed to update user token. Please try again.");
     }
     revalidatePath("/users/dashboard");
+    return {
+      blogId: blog._id.toString(),
+      blogTitle: blog.title,
+    };
   } catch (error) {
     console.error("Error generating blog:", error);
     throw new Error("Failed to generate blog. Please try again.");

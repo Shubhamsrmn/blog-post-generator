@@ -29,7 +29,7 @@ const ThemeToggleBtn: React.FC<props> = ({ sidebar }) => {
       </div>
       {sidebar === 2 && (
         <div
-          className={`absolute top-2/4 -translate-y-2/4 capitalize font-semibold ${
+          className={`absolute top-2/4 -translate-y-2/4 capitalize font-medium ${
             theme === "dark" ? "translate-x-[1rem]" : "translate-x-[5.2rem]"
           } transition-transform duration-500 ease-in-out`}
         >

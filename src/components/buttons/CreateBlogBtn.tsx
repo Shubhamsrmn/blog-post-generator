@@ -3,7 +3,9 @@ import React from "react";
 import { useFormStatus } from "react-dom";
 
 const CreateBlogBtn = () => {
-  const { pending } = useFormStatus();
+  const { pending, data } = useFormStatus();
+  console.log("creation", data);
+
   return (
     <button
       type="submit"

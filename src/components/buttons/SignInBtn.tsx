@@ -5,10 +5,10 @@ import React from "react";
 const SignInBtn = () => {
   return (
     <button
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      className="bg-black text-white font-medium py-1 px-8 rounded-full"
       onClick={() => signInAction()}
     >
-      Sign In with Google
+      Sign In
     </button>
   );
 };

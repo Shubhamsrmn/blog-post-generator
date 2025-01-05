@@ -2,7 +2,7 @@ import { auth } from "@/app/api/auth/[...nextauth]/options";
 import blogModel from "@/models/blog.model";
 import { connect } from "../dbconnection";
 
-export async function getRecentBlogPost() {
+export async function getRecentBlogPosts() {
   try {
     // Ensure database connection
     await connect();

@@ -1,19 +1,24 @@
-import Image from "next/image";
 import React from "react";
-import icon from "../../../public/icon.jpeg";
-function loading() {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBrain } from "@fortawesome/free-solid-svg-icons/faBrain";
+function Loading() {
   return (
-    <div>
-      <Image
-        src={icon}
-        alt="Ai blog generator"
-        width={120}
-        height={120}
-        className="rounded-full"
+    <div className="flex flex-col items-center justify-center gap-24 h-screen">
+      <p className="text-[4.2rem] font-semibold text-green-600">
+        AI Blog Generator
+      </p>
+      <FontAwesomeIcon
+        icon={faBrain}
+        beatFade
+        className="text-[24rem]"
+        color="#16a34a"
       />
-      <h1>loading</h1>
+
+      <p className="text-[2.4rem] font-semibold text-blackText mb-4">
+        Loading AI Engine...
+      </p>
     </div>
   );
 }
 
-export default loading;
+export default Loading;

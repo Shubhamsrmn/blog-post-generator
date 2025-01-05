@@ -64,12 +64,6 @@ textarea,
 select {
   font: inherit;
 }
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 300ms ease-out;
-  transition: border 100ms ease-out;
-}
 p {
   font-weight: 500;
   font-size: 1.5rem;
@@ -111,7 +105,7 @@ p {
   @apply absolute w-max rounded-xl bg-stone-700 px-4 py-1 text-white text-[1.1rem] opacity-0 transition-opacity duration-500 ease-in-out; /* Added opacity and transition */
   content: attr(data-tooltip);
   pointer-events: none; /* Prevents tooltip from blocking clicks */
-  z-index: 10; /* Ensure tooltip is above other content */
+  z-index: 20; /* Ensure tooltip is above other content */
 }
 
 /* Default direction (bottom) */
@@ -125,5 +119,5 @@ p {
 }
 
 .tooltip-after:hover::after {
-  @apply opacity-100; /* Tooltip becomes visible on hover */
+  @apply opacity-100 z-20; /* Tooltip becomes visible on hover */
 }

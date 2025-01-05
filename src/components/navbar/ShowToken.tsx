@@ -5,10 +5,7 @@ import React from "react";
 
 async function ShowToken() {
   const user = await auth();
-  console.log(user);
-
   const getToken = await UserModel.findOne({ email: user?.user?.email });
-
   return (
     <Link
       href="/users/token-topup"
