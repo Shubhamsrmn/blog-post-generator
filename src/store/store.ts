@@ -1,18 +1,29 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-const store = create(
+
+// Define the store state type
+interface StoreState {
+  // Add your state properties here
+  counter: number;
+  setCounter: (count: number) => void;
+  increment: () => void;
+  decrement: () => void;
+}
+
+// Create the store
+const store = create<StoreState>()(
   persist(
-    (set) => {
-      set((state) => {
-        return {
-          ...state,
-        };
-      });
-    },
+    (set) => ({
+      counter: 0, // initial state
+      setCounter: (count: number) => set({ counter: count }),
+      increment: () => set((state) => ({ counter: state.counter + 1 })),
+      decrement: () => set((state) => ({ counter: state.counter - 1 })),
+    }),
     {
-      name: "globalStore",
-      storage: createJSONStorage(() => localStorage),
+      name: "globalStore", // Name of the localStorage key
+      storage: createJSONStorage(() => localStorage), // Use localStorage as the storage
     }
   )
 );
+
 export default store;

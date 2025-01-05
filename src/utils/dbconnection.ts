@@ -13,7 +13,7 @@ export async function connect(): Promise<void> {
 
   try {
     // Attempt to connect to the database
-    const db = await mongoose.connect("mongodb://localhost:27017/");
+    const db = await mongoose.connect(process.env.MONGODB_URI!);
 
     connection.isConnected = db.connections[0].readyState;
 
