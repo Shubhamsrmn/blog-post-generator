@@ -1,4 +1,5 @@
 import CreateBlogBtn from "@/components/buttons/CreateBlogBtn";
+import { blogCreateAction } from "@/utils/actions";
 import React from "react";
 
 const Dashboard = () => {
@@ -7,7 +8,7 @@ const Dashboard = () => {
       <h1 className="text-[2.8rem] font-medium text-center">
         Generate SEO-Friendly Blogs Easily
       </h1>
-      <form className="space-y-10 mt-10">
+      <form className="space-y-10 mt-10" action={blogCreateAction}>
         <div>
           <label htmlFor="title" className="">
             Blog Title
