@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const TermsServicesPage = () => {
@@ -12,12 +13,12 @@ const TermsServicesPage = () => {
 
       <p className="text-[1.8rem] text-gray-700 mb-6">
         By accessing or using the AI Blog Generator website, accessible from{" "}
-        <a
+        <Link
           href="https://ai-blog.shubhamsrmn.me"
           className="text-blue-600 hover:underline"
         >
           https://ai-blog.shubhamsrmn.me
-        </a>
+        </Link>
         , you agree to comply with and be bound by the following terms and
         conditions. Please read these terms carefully.
       </p>
@@ -102,12 +103,12 @@ const TermsServicesPage = () => {
       </p>
       <p className="text-[1.8rem] text-gray-700 mb-6">
         Email:{" "}
-        <a
+        <Link
           href="mailto:shubhamsrmn@gmail.com"
           className="text-blue-600 hover:underline"
         >
           shubhamsrmn@gmail.com
-        </a>
+        </Link>
       </p>
       <p className="text-[1.8rem] text-gray-700">
         Address: Old Sangvi, Pune, Maharashtra, India

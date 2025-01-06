@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const PrivacyPolicyPage = () => {
@@ -12,12 +13,12 @@ const PrivacyPolicyPage = () => {
 
       <p className="text-[1.8rem] text-gray-700 mb-6">
         At AI Blog Generator, accessible from{" "}
-        <a
+        <Link
           href="https://ai-blog.shubhamsrmn.me"
           className="text-blue-600 hover:underline"
         >
           https://ai-blog.shubhamsrmn.me
-        </a>
+        </Link>
         , one of our main priorities is the privacy of our visitors. This
         Privacy Policy document contains types of information that is collected
         and recorded by AI Blog Generator and how we use it.
@@ -77,12 +78,12 @@ const PrivacyPolicyPage = () => {
       </p>
       <p className="text-[1.8rem] text-gray-700 mb-6">
         Email:{" "}
-        <a
+        <Link
           href="mailto:shubhamsrmn@gmail.com"
           className="text-blue-600 hover:underline"
         >
           shubhamsrmn@gmail.com
-        </a>
+        </Link>
       </p>
       <p className="text-[1.8rem] text-gray-700">
         Address: Old Sangvi, Pune, Maharashtra, India

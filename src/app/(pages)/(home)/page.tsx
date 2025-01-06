@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ilustation from "../../public/Wall post-amico.svg";
+import ilustation from "../../../../public/Wall post-amico.svg";
 
 export default async function Home() {
   return (
