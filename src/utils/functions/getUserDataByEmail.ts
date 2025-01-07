@@ -1,4 +1,7 @@
-const base = "http://localhost:3000";
+const base =
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  process.env.NEXTAUTH_URL ||
+  "https://ai-blog.shubhamsrmn.me";
 export const getUserDataByEmail = async (email: string) => {
   try {
     const response = await fetch(
