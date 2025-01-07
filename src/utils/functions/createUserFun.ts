@@ -1,4 +1,4 @@
-const base = "http://localhost:3000";
+const base = process.env.NEXT_PUBLIC_BASE_URL;
 export const createUser = async (user: { name: string; email: string }) => {
   try {
     const response = await fetch(`${base}/api/users`, {

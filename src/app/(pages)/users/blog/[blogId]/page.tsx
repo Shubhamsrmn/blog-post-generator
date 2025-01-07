@@ -1,6 +1,7 @@
+import React from "react";
+import BlogPDFDocDownloadBtn from "@/components/blog/BlogPdfDocDownloadBtn";
 import BlogRenderer from "@/components/blog/BlogRenderer";
 import { getBlogPost } from "@/utils/functions/getBlogPost";
-import React from "react";
 
 async function BlogDetails({
   params,
@@ -11,6 +12,14 @@ async function BlogDetails({
   const blogPost = await getBlogPost(blogId);
   return (
     <div>
+      <BlogPDFDocDownloadBtn
+        title={blogPost.title}
+        content={blogPost.content}
+        keywords={blogPost.keywords}
+        tags={blogPost.tags}
+        category={blogPost.categories[0]}
+        metaDescription={blogPost.metaDescription}
+      />
       <BlogRenderer
         title={blogPost.title}
         content={blogPost.content}

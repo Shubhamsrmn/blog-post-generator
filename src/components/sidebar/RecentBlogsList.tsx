@@ -9,20 +9,28 @@ async function RecentBlogsList() {
   return (
     <div className="mt-16">
       <p className="mb-4 text-blackText">Recent</p>
-      <div className="max-h-[24rem]">
-        {recentBlogs.map((blog) => (
-          <RecentBlogItem
-            key={blog.title}
-            title={blog.title}
-            blogId={blog._id.toString()}
+      {recentBlogs.length === 0 ? (
+        <p className="text-blackText text-center text-[1.4rem]">
+          No recent blogs
+        </p>
+      ) : (
+        <>
+          <div className="max-h-[24rem]">
+            {recentBlogs.map((blog) => (
+              <RecentBlogItem
+                key={blog.title}
+                title={blog.title}
+                blogId={blog._id.toString()}
+              />
+            ))}
+          </div>
+          <CustomLink
+            url={`/users/blog/all-blogs`}
+            title={"View All"}
+            linkStyle="w-max ml-auto text-[4rem]"
           />
-        ))}
-      </div>
-      <CustomLink
-        url={`/users/blog/all-blogs`}
-        title={"View All"}
-        linkStyle="w-max ml-auto text-[4rem]"
-      />
+        </>
+      )}
     </div>
   );
 }

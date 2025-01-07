@@ -44,7 +44,7 @@ export async function blogCreateAction(formData: FormData) {
   Generate a blog in Markdown format based on the provided title and description. Follow this exact structure:
   
   1. **Title:** Generate an **SEO-friendly blog title**.
-  2. **Content:** Write a detailed, well-structured **SEO-friendly body content** of the blog (500-1000 words). Ensure readability and engagement.use <line-break/> to separate paragraphs.
+  2. **Content:** Write a detailed, well-structured **SEO-friendly body content** of the blog (500-1000 words). Ensure readability and engagement. Use simple paragraphs with clear transitions. Do not include nested lists or overly complicated formatting. Ensure readability and engagement.use <line-break/> to separate paragraphs.
   3. **Keywords:** Provide an **array or list of SEO-friendly keywords** related to the blog content.
   4. **Category:** Suggest a single **category** that best suits the blog topic.
   5. **Tags:** Provide a list of **tags** relevant to the blog.
