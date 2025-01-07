@@ -1,4 +1,7 @@
-const base = process.env.NEXT_PUBLIC_BASE_URL;
+const base =
+  process.env.NEXT_PUBLIC_BASE_URL ||
+  process.env.NEXTAUTH_URL ||
+  "https://ai-blog.shubhamsrmn.me";
 export const createUser = async (user: { name: string; email: string }) => {
   try {
     const response = await fetch(`${base}/api/users`, {
