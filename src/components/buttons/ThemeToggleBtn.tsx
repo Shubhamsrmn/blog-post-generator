@@ -1,13 +1,22 @@
 import store from "@/store/store";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect } from "react";
 
 const ThemeToggleBtn = () => {
   const {
     themeState: { theme },
     toggleTheme,
   } = store();
+  useEffect(() => {
+    if (theme === "light") {
+      document.body.classList.add("light-theme");
+      document.body.classList.remove("dark-theme");
+    } else {
+      document.body.classList.add("dark-theme");
+      document.body.classList.remove("light-theme");
+    }
+  }, [theme]);
   return (
     <button
       className={`bg-graybackground rounded-full w-20 h-20 overflow-hidden relative`}

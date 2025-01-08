@@ -8,17 +8,15 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="h-screen flex flex-col justify-between">
-      <nav className="bg-white py-4 px-12 w-full sticky top-0 flex justify-between items-center border-b border-gray-300">
+    <div className="flex flex-col justify-between">
+      <nav className="bg-background py-4 px-12 w-full sticky top-0 flex justify-between items-center border-b border-gray-300">
         <LogoContainer />
         <SignInBtn />
       </nav>
       {children}
-      <footer className="sticky bottom-0 text-center py-4 bg-white border-t border-gray-300 flex items-center justify-center gap-4">
-        <p className="text-gray-600">
-          &copy; 2025 Blog AI Generator by Shubham Nanaware.
-        </p>
-        <p className="text-gray-600">
+      <footer className="text-grayText sticky bottom-0 text-center py-4 bg-background border-t border-gray-300 flex items-center justify-center gap-4 max-sm:flex-col max-sm:gap-0">
+        <p>&copy; 2025 Blog AI Generator by Shubham Nanaware.</p>
+        <p>
           <Link
             href="/privacy-policy"
             className="text-blue-600"

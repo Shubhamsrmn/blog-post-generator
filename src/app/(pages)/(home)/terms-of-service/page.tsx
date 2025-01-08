@@ -3,7 +3,7 @@ import React from "react";
 
 const TermsServicesPage = () => {
   return (
-    <div className="max-w-[80%] mx-auto p-8">
+    <div className="w-[80%] mx-auto p-8 max-sm:w-full">
       <h1 className="text-[4rem] font-semibold text-black mb-6">
         Terms of Service for AI Blog Generator
       </h1>
