@@ -5,8 +5,13 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import convertToSubcurrency from "@/utils/functions/convertToSubcurrency";
+import { base } from "@/utils/constants";
+import { useRouter } from "next/navigation";
+import { PaymentIntent } from "@stripe/stripe-js";
+import { toast } from "react-toastify";
 
 const CheckoutStripe = ({ amount }: { amount: number }) => {
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string>();
@@ -14,7 +19,7 @@ const CheckoutStripe = ({ amount }: { amount: number }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("/api/create-payment-intent", {
+    fetch("/api/protected-routes/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +27,11 @@ const CheckoutStripe = ({ amount }: { amount: number }) => {
       body: JSON.stringify({ amount: convertToSubcurrency(amount) }),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+      .then((data) => setClientSecret(data.clientSecret))
+      .catch((error) => {
+        console.error("Error:", error);
+        setErrorMessage("An error occurred creating your payment.");
+      });
   }, [amount]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -41,26 +50,53 @@ const CheckoutStripe = ({ amount }: { amount: number }) => {
       return;
     }
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      clientSecret,
-      confirmParams: {
-        return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
-      },
-    });
+    try {
+      const { paymentIntent, error } = await stripe.confirmPayment({
+        elements,
+        clientSecret,
+        confirmParams: {
+          return_url: `${base}/users/dashboard`,
+        },
+        redirect: "if_required",
+      });
 
-    if (error) {
-      // This point is only reached if there's an immediate error when
-      // confirming the payment. Show the error to your customer (for example, payment details incomplete)
-      setErrorMessage(error.message);
-    } else {
-      // The payment UI automatically closes with a success animation.
-      // Your customer is redirected to your `return_url`.
+      if (error) {
+        setErrorMessage(error.message);
+      } else if (paymentIntent && paymentIntent.status === "succeeded") {
+        await handleSuccessfulPayment(paymentIntent);
+      } else if (paymentIntent && paymentIntent.status === "requires_action") {
+        // Handle 3D Secure or other actions if needed.
+        // You might not need to do anything here if you have redirect: 'if_required'
+      }
+    } catch (apiError) {
+      console.error("Error during payment:", apiError);
+      setErrorMessage("An error occurred processing your payment.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
-
+  const handleSuccessfulPayment = async (paymentIntent: PaymentIntent) => {
+    try {
+      const response = await fetch("/api/protected-routes/success-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount, paymentIntentId: paymentIntent.id }),
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`API call failed: ${response.status} - ${errorText}`);
+      }
+      toast.success(`Add ${amount} token. Payment successful! 🎉`, {
+        onClose: () => {
+          router.push(`/users/dashboard`);
+        },
+      });
+    } catch (apiError) {
+      console.error("Error calling success API:", apiError);
+      setErrorMessage("An error occurred finalizing your payment.");
+      router.push(`/users/payment-error?amount=${amount}`);
+    }
+  };
   if (!clientSecret || !stripe || !elements) {
     return (
       <div className="flex items-center justify-center">

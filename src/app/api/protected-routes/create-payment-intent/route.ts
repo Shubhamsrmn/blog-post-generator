@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
       currency: "usd",
       automatic_payment_methods: { enabled: true },
     });
+    console.log("from api/users/create-payment-intnet/route.ts");
 
     return NextResponse.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {

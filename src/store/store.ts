@@ -1,27 +1,37 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { themeState, themeStateType } from "./themeSlice/slice";
 
 // Define the store state type
 interface StoreState {
-  // Add your state properties here
-  counter: number;
-  setCounter: (count: number) => void;
-  increment: () => void;
-  decrement: () => void;
+  themeState: themeStateType;
+  toggleTheme: () => void;
+  setSidebar: (val: 0 | 1) => void;
 }
 
 // Create the store
 const store = create<StoreState>()(
   persist(
     (set) => ({
-      counter: 0, // initial state
-      setCounter: (count: number) => set({ counter: count }),
-      increment: () => set((state) => ({ counter: state.counter + 1 })),
-      decrement: () => set((state) => ({ counter: state.counter - 1 })),
+      themeState: themeState,
+      toggleTheme: () =>
+        set((state) => ({
+          themeState: {
+            ...state.themeState,
+            theme: state.themeState.theme === "light" ? "dark" : "light",
+          },
+        })),
+      setSidebar: (val) =>
+        set((state) => ({
+          themeState: {
+            ...state.themeState,
+            sidebar: val,
+          },
+        })),
     }),
     {
-      name: "globalStore", // Name of the localStorage key
-      storage: createJSONStorage(() => localStorage), // Use localStorage as the storage
+      name: "globalStore",
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

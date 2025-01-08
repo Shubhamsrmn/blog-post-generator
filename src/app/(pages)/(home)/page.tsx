@@ -1,7 +1,11 @@
 import Image from "next/image";
 import ilustation from "../../../../public/Wall post-amico.svg";
+import { auth } from "@/app/api/auth/[...nextauth]/options";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
+  const user = await auth();
+  if (user) return redirect("/users/dashboard");
   return (
     <main className="mx-auto w-[80%] py-8 flex-1 flex flex-col justify-between items-center">
       <h1 className="text-[3.2rem] font-medium text-blackText">

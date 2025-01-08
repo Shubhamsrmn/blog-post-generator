@@ -9,7 +9,7 @@ async function Navbar() {
   const userName = user?.user?.name || "";
   const userEmail = user?.user?.email || "";
   return (
-    <div className="bg-white py-4 px-12 w-full sticky top-0 flex justify-between items-center">
+    <div className="bg-white py-4 px-12 w-full sticky top-0 flex justify-between items-center z-10">
       <LogoContainer />
       <div className="flex items-center gap-8">
         <ShowToken />

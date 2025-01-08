@@ -1,10 +1,10 @@
 "use server";
 import { auth, signIn, signOut } from "@/app/api/auth/[...nextauth]/options";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import BlogModel from "../models/blog.model";
-import { connect } from "./dbconnection";
+import BlogModel from "./db/models/blog.model";
+import { connect } from "./db/dbconnection";
 import { parseMarkdownFun } from "./functions/parseMarkdownFun";
-import UserModel from "@/models/user.model";
+import UserModel from "@/utils/db/models/user.model";
 import { revalidatePath } from "next/cache";
 
 export async function signInAction() {
@@ -16,30 +16,33 @@ export async function signInAction() {
 export async function signOutAction() {
   await signOut({ redirectTo: "/" });
 }
-export async function blogCreateAction(formData: FormData) {
+export async function blogCreateAction(blogName: string, blogContent: string) {
   await connect();
   const user = await auth();
   if (!user) {
-    throw new Error("You must be signed in to create a blog.");
+    return { message: "You must be signed in to create a blog.", data: null };
   }
   if (!user?.user?.email) {
-    throw new Error("You must be signed in to create a blog.");
+    return { message: "You must be signed in to create a blog.", data: null };
   }
-  const blogName = formData.get("blogTitle");
-  const blogContent = formData.get("blogContent");
 
-  if (!blogName || !blogContent) {
-    throw new Error("Both blogName and blogContent are required.");
-  }
   const dbUser = await UserModel.findOne({ email: user.user.email });
   if (!dbUser) {
-    throw new Error("User not found. Please ensure you are signed in.");
+    return {
+      message: "User not found. Please ensure you are signed in.",
+      data: null,
+    };
   }
   if (dbUser.token < 1) {
-    throw new Error("You need to buy a token to generate a blog.");
+    return {
+      message: "You need to buy a token to generate a blog.",
+      data: null,
+    };
   }
+
   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY || "");
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
   const prompt = `
   Generate a blog in Markdown format based on the provided title and description. Follow this exact structure:
   
@@ -89,7 +92,8 @@ export async function blogCreateAction(formData: FormData) {
     const parsedContent = parseMarkdownFun(
       generatedContent.replaceAll("```markdown", "").replaceAll("```", "")
     );
-    await BlogModel.create({
+
+    const blog = await BlogModel.create({
       user: dbUser._id,
       title: parsedContent.title,
       content: parsedContent.content,
@@ -98,21 +102,39 @@ export async function blogCreateAction(formData: FormData) {
       categories: parsedContent.categories,
       metaDescription: parsedContent.metaDescription,
     });
+
     const updatedUser = await UserModel.findOneAndUpdate(
       { _id: dbUser._id, token: { $gt: 0 } },
       { $inc: { token: -1 } },
       { new: true }
     );
+
     if (!updatedUser) {
-      throw new Error("Failed to update user token. Please try again.");
+      return {
+        message: "Failed to update user token. Please try again.",
+        data: null,
+      };
     }
+
     revalidatePath("/users/dashboard");
-    // return {
-    //   blogId: blog._id.toString(),
-    //   blogTitle: blog.title,
-    // };
+
+    return {
+      message: "Blog generated successfully.",
+      data: {
+        blogId: blog._id.toString(),
+        blogTitle: blog.title,
+        blogContent: blog.content,
+        keywords: blog.keywords,
+        tags: blog.tags,
+        category: blog.categories,
+        metaDescription: blog.metaDescription,
+      },
+    };
   } catch (error) {
     console.error("Error generating blog:", error);
-    throw new Error("Failed to generate blog. Please try again.");
+    return {
+      message: "Failed to generate blog. Please try again.",
+      data: null,
+    };
   }
 }

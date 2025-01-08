@@ -1,13 +1,11 @@
-const base =
-  process.env.NEXT_PUBLIC_BASE_URL ||
-  process.env.NEXTAUTH_URL ||
-  "https://ai-blog.shubhamsrmn.me";
+import { base } from "../constants";
+
 export const getUserDataByEmail = async (email: string) => {
   try {
     const response = await fetch(
       `${base}/api/users?email=${encodeURIComponent(email)}`,
       {
-        method: "GET",
+        next: { tags: [`user-token`] },
       }
     );
 

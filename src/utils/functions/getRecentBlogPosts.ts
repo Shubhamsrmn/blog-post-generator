@@ -1,6 +1,6 @@
 import { auth } from "@/app/api/auth/[...nextauth]/options";
-import blogModel from "@/models/blog.model";
-import { connect } from "../dbconnection";
+import blogModel from "@/utils/db/models/blog.model";
+import { connect } from "../db/dbconnection";
 
 export async function getRecentBlogPosts() {
   try {

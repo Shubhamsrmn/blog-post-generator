@@ -1,11 +1,11 @@
 import { auth } from "@/app/api/auth/[...nextauth]/options";
-import UserModel from "@/models/user.model";
+import { getUserDataByEmail } from "@/utils/functions/getUserDataByEmail";
 import Link from "next/link";
-import React from "react";
-
 async function ShowToken() {
   const user = await auth();
-  const getToken = await UserModel.findOne({ email: user?.user?.email });
+  if (!user?.user?.email) return null;
+  const tokenData = await getUserDataByEmail(user.user.email);
+
   return (
     <Link
       href="/users/token-topup"
@@ -13,7 +13,7 @@ async function ShowToken() {
     >
       <span>Token : </span>
       <span className="font-semibold text-green-600">
-        {getToken?.token || 0}
+        {tokenData?.token || 0}
       </span>
     </Link>
   );
