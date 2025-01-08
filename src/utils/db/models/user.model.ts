@@ -17,7 +17,6 @@ const UserSchema = new mongoose.Schema(
     token: {
       type: Number,
       required: true,
-      default: 10,
       min: 0,
     },
   },

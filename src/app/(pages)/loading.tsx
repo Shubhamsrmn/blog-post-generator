@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBrain } from "@fortawesome/free-solid-svg-icons/faBrain";
 function Loading() {
   return (
-    <div className="flex flex-col items-center justify-center gap-24 h-screen">
+    <div className="bg-background flex flex-col items-center justify-center gap-24 h-screen">
       <p className="text-[4.2rem] font-semibold text-green-600">
         AI Blog Generator
       </p>

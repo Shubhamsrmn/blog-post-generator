@@ -9,12 +9,12 @@ export default function UserLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex">
+    <div className="flex min-h-screen overflow-x-hidden">
       <ToastContainer autoClose={4000} />
       <Sidebar>
         <RecentBlogsList />
       </Sidebar>
-      <div className="bg-secbackground relative flex-1 text-blackText flex flex-col justify-between transition-colors duration-300 ease-in-out">
+      <div className="bg-secbackground flex-1 text-blackText flex flex-col justify-between transition-colors duration-300 ease-in-out">
         <Navbar />
         <div className="py-4 px-12">{children}</div>
 

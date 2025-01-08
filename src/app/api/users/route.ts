@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     }
     let user = await User.findOne({ email });
     if (!user) {
-      user = await User.create({ name, email });
+      user = await User.create({ name, email, token: 10 });
     }
     return NextResponse.json(user, { status: 200 });
   } catch (error) {
