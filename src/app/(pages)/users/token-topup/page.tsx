@@ -44,7 +44,7 @@ const TokenTopUp = () => {
           value={amount}
           onChange={handleAmountChange}
           placeholder="Enter amount"
-          className={`w-full py-2 px-4 mt-2 border ${
+          className={`bg-secbackground w-full py-2 px-4 mt-2 border ${
             error
               ? "border-red-500 focus:ring-red-500"
               : "border-gray-300 focus:ring-green-600"

@@ -13,6 +13,29 @@
   --gray-light-background: #e9eef6;
 }
 
+/* Light theme (for .light-theme class) */
+.light-theme {
+  --background: #f0f4f9;
+  --foreground: #171717;
+  --sec-background: #ffffff;
+  --gray-background: #dde3ea;
+  --sec-text-color: #5f6368;
+  --pri-text-color: #1b1c1d;
+  --third-background: #d3e3fd;
+  --gray-light-background: #e9eef6;
+}
+
+/* Dark theme (for .dark-theme class) */
+.dark-theme {
+  --background: #171717;
+  --foreground: #f0f4f9;
+  --sec-background: #2a2a2a;
+  --gray-background: #444444;
+  --sec-text-color: #a0a0a0;
+  --pri-text-color: #f0f4f9;
+  --third-background: #303030;
+  --gray-light-background: #666666;
+}
 *,
 *::before,
 *::after,

@@ -9,12 +9,12 @@ export default function HomeLayout({
 }>) {
   return (
     <div className="flex flex-col justify-between">
-      <nav className="bg-background py-4 px-12 w-full sticky top-0 flex justify-between items-center border-b border-gray-300">
+      <nav className="bg-white py-4 px-12 w-full sticky top-0 flex justify-between items-center border-b border-gray-300">
         <LogoContainer />
         <SignInBtn />
       </nav>
       {children}
-      <footer className="text-grayText sticky bottom-0 text-center py-4 bg-background border-t border-gray-300 flex items-center justify-center gap-4 max-sm:flex-col max-sm:gap-0">
+      <footer className="bg-white text-grayText sticky bottom-0 text-center py-4 border-t border-gray-300 flex items-center justify-center gap-4 max-sm:flex-col max-sm:gap-0">
         <p>&copy; 2025 Blog AI Generator by Shubham Nanaware.</p>
         <p>
           <Link

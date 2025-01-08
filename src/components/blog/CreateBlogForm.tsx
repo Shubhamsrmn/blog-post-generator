@@ -96,7 +96,7 @@ const CreateBlogForm = () => {
             validateField("blogTitle", e.target.value);
           }}
           placeholder="Enter Blog Title Here..."
-          className={`w-full py-2 px-4 mt-2 border ${
+          className={`bg-secbackground w-full py-2 px-4 mt-2 border ${
             errors.blogTitle
               ? "border-red-500 focus:ring-red-500"
               : "border-gray-300 focus:ring-green-600"
@@ -128,7 +128,7 @@ const CreateBlogForm = () => {
             validateField("blogContent", e.target.value);
           }}
           placeholder="Write a short detailed description of the blog content here..."
-          className={`w-full p-4 mt-2 border ${
+          className={`bg-secbackground w-full p-4 mt-2 border ${
             errors.blogContent
               ? "border-red-500 focus:ring-red-500"
               : "border-gray-300 focus:ring-green-600"

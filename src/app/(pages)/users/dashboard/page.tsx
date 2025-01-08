@@ -3,7 +3,7 @@ import React from "react";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="">
       <h1 className="text-[2.8rem] font-medium text-center">
         Generate SEO-Friendly Blogs Easily
       </h1>

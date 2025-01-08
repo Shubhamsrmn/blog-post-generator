@@ -14,11 +14,11 @@ export default function UserLayout({
       <Sidebar>
         <RecentBlogsList />
       </Sidebar>
-      <div className="relative flex-1 text-blackText flex flex-col justify-between">
+      <div className="bg-secbackground relative flex-1 text-blackText flex flex-col justify-between transition-colors duration-300 ease-in-out">
         <Navbar />
         <div className="py-4 px-12">{children}</div>
 
-        <footer className="main-footer sticky bottom-0 text-center py-2 bg-white">
+        <footer className="bg-secbackground main-footer sticky bottom-0 text-center py-2">
           <div className="main-footer-pagination"></div>
           <p>&copy; 2025 Blog AI Generator by Shubham Nanaware</p>
         </footer>
