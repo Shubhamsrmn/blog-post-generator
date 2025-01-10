@@ -29,7 +29,7 @@ const Sidebar: React.FC<props> = ({ children }) => {
     <div
       className={`bg-background top-0 px-4 py-4 text-grayText transition-width duration-300 ease-in-out flex flex-col justify-between gap-y-16 h-screen ${
         sidebar === 1 ? "w-[25rem]" : sidebar === 0 ? "w-[7rem]" : ""
-      } z-20 ${width <= 600 && sidebar === 1 ? "fixed" : "sticky"}`}
+      } z-20 fixed`}
     >
       <div className="space-y-16">
         <button
