@@ -66,4 +66,3 @@ A fully responsive, feature-rich AI-powered blog generator built using **Next.js
    ```
 5. Open http://localhost:3000 to view the application in the browser.
 
-🌐 Live Demo: [AI Blog Generator](https://ai-blog.shubhamsrmn.me)
